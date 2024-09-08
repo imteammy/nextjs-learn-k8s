@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-prod
+  labels:
+    app: nextjs
+    stage: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs
+      stage: prod
+  template:
+    metadata:
+      labels:
+        app: nextjs
+        stage: prod
+    spec:
+      containers:
+        - name: nextjs
+          image: your-nextjs-image:prod
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: DATABASE_URL_PROD

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-uat
+  labels:
+    app: nextjs
+    stage: uat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs
+      stage: uat
+  template:
+    metadata:
+      labels:
+        app: nextjs
+        stage: uat
+    spec:
+      containers:
+        - name: nextjs
+          image: your-nextjs-image:uat
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: DATABASE_URL_UAT

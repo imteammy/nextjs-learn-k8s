@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+data:
+  DATABASE_URL_DEV: postgres://postgres:postgres@postgres:5432/nextjs_dev
+  DATABASE_URL_UAT: postgres://postgres:postgres@postgres:5432/nextjs_uat
+  DATABASE_URL_STAGING: postgres://postgres:postgres@postgres:5432/nextjs_staging
+  DATABASE_URL_DEPLOY: postgres://postgres:postgres@postgres:5432/nextjs_deploy

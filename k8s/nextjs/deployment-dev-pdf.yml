@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nextjs-dev
+  labels:
+    app: nextjs
+    stage: dev
+spec:
+  containers:
+    - name: dev-pod
+      image: nextjs-app:dev
